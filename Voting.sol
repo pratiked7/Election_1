@@ -2,7 +2,7 @@ pragma solidity >=0.5.9;
 
 contract Voting {
 
-	bool public isVoting;
+	
 
 	// Vote Struct. It defines a custom type to be used to store values for every vote received.
 	struct Vote {
@@ -21,7 +21,6 @@ contract Voting {
 
 	// Main constructor of the contract. It sets the owner of the contract and the voting status flag to false.
 	constructor() public {
-		isVoting = false;
 	}
 
 	function startVoting() external returns(bool) {
