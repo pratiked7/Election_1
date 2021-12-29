@@ -1,8 +1,8 @@
 pragma solidity >=0.5.9;
 
-contract Voting {
+import "./AccessControlled.sol";
 
-	
+contract Voting is AccessControlled{
 
 	// Vote Struct. It defines a custom type to be used to store values for every vote received.
 	struct Vote {
@@ -29,7 +29,7 @@ contract Voting {
 		return true;
 	}
 
-	function stopVoting() external returns(bool) {
+	function stopVoting() external isVotingOpen returns(bool) {
 		isVoting = false;
 		emit StopVoting(msg.sender);
 		return true;
