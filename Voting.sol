@@ -35,8 +35,8 @@ contract Voting is AccessControlled{
 		return true;
 	}
 
-	function addVote(address receiver) external returns(bool) {
-	
+	function addVote(address receiver) external isVotingOpen returns(bool) {
+		require(receiver != address(0), "Wrong input parameter");
 		// Set values for the Vote struct
 		votes[msg.sender].receiver = receiver;
 		votes[msg.sender].timestamp = block.timestamp;
@@ -46,6 +46,7 @@ contract Voting is AccessControlled{
 	}
 
 	function removeVote() external returns(bool) {
+		require(votes[msg.sender].timestamp > 0, "This person has not voted yet");
 
 		delete votes[msg.sender];
 
